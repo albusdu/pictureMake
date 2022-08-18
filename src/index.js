@@ -54,6 +54,7 @@ function test(lk){
         url: lk,
     })
     document.getElementById('vanilla-demo').addEventListener('update', function(ev) { 
+        console.log(ev.detail);
         vanilla.result({type: 'blob', size: { width: 760, height: 760 }}).then((blob)=> {
             const url = window.URL.createObjectURL(blob);
             link = url;
