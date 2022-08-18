@@ -31,25 +31,25 @@ document.querySelectorAll('.frame').forEach((item,index)=> {
 
 let link = '';
 let l ='';
+let el = document.getElementById('vanilla-demo');
+let vanilla = null;
 document.querySelector('input[type="file"]').addEventListener('change', function() {
     if (this.files && this.files[0]) {
-        // var img = document.querySelector('.img');
-        // img.onload = () => {
-        //     URL.revokeObjectURL(img.src);  // no longer needed, free memory
-        // }
         link =  URL.createObjectURL(this.files[0]);
-        console.log(link)
-        test(link)
-        // img.src = URL.createObjectURL(this.files[0]); // set src to blob url
+        if(vanilla){
+            vanilla.destroy()
+        }
+        vanilla = new Croppie(el, {
+            viewport: { width: 250, height: 250, type: 'circle' },
+            boundary: { width: 250, height: 250 },
+            showZoomer: true,
+        });
+        test(link);
     }
 });
-let el = document.getElementById('vanilla-demo');
-let vanilla = new Croppie(el, {
-    viewport: { width: 250, height: 250, type: 'circle' },
-    boundary: { width: 250, height: 250 },
-    showZoomer: true,
-});
+
 function test(lk){
+    
     vanilla.bind({
         url: lk,
     })
