@@ -22,9 +22,9 @@ document.querySelectorAll('.frame').forEach((item,index)=> {
         let options = {width: 800, height: 800};
         l = '';
         mergeImages([{ src: link, x: 20, y: 20 }, activeFrame], options)
-        .then(b64 => {
-            l = b64; 
-            document.querySelector('.preview').src = l;
+            .then(b64 => {
+                l = b64; 
+                document.querySelector('.preview').src = l;
             });
     })
 })
@@ -56,15 +56,14 @@ function test(lk){
     document.getElementById('vanilla-demo').addEventListener('update', function(ev) { 
         vanilla.result({type: 'blob', size: { width: 760, height: 760 }}).then((blob)=> {
             const url = window.URL.createObjectURL(blob);
-            document.querySelector('.img').src = url;
             link = url;
 
             let options = {width: 800, height: 800}
             l = '';
             mergeImages([{ src: link, x: 20, y: 20 }, activeFrame], options)
-            .then(b64 => {
-                l = b64; 
-                document.querySelector('.preview').src = b64;
+                .then(b64 => {
+                    l = b64; 
+                    document.querySelector('.preview').src = b64;
                 });
             
         })
