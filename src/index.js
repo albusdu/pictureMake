@@ -38,21 +38,23 @@ document.querySelector('input[type="file"]').addEventListener('change', function
         //     URL.revokeObjectURL(img.src);  // no longer needed, free memory
         // }
         link =  URL.createObjectURL(this.files[0]);
+        console.log(link)
         test(link)
         // img.src = URL.createObjectURL(this.files[0]); // set src to blob url
     }
 });
-
+let el = document.getElementById('vanilla-demo');
+let vanilla = new Croppie(el, {
+    viewport: { width: 250, height: 250, type: 'circle' },
+    boundary: { width: 250, height: 250 },
+    showZoomer: true,
+});
 function test(lk){
-    let el = document.getElementById('vanilla-demo');
-    let vanilla = new Croppie(el, {
-        viewport: { width: 250, height: 250, type: 'circle' },
-        boundary: { width: 250, height: 250 },
-        showZoomer: true,
-    });
+    let points = ['0', '0', '250', '250']
     vanilla.bind({
         url: lk,
-    });
+        points: points
+    })
     document.getElementById('vanilla-demo').addEventListener('update', function(ev) { 
         vanilla.result({type: 'blob', size: { width: 760, height: 760 }}).then((blob)=> {
             const url = window.URL.createObjectURL(blob);
