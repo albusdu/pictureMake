@@ -50,10 +50,8 @@ let vanilla = new Croppie(el, {
     showZoomer: true,
 });
 function test(lk){
-    let points = ['0', '0', '250', '250']
     vanilla.bind({
         url: lk,
-        points: points
     })
     document.getElementById('vanilla-demo').addEventListener('update', function(ev) { 
         vanilla.result({type: 'blob', size: { width: 760, height: 760 }}).then((blob)=> {
