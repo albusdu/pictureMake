@@ -63,12 +63,12 @@ function test(lk){
             mergeImages([{ src: link, x: 20, y: 20 }, activeFrame], options)
                 .then(b64 => {
                     l = b64; 
-                    document.querySelector('.preview').src = b64;
+                    document.querySelector('.preview').src = l;
                 });
             
         })
     });
 }
 document.querySelector('#btn').addEventListener('click', ()=> {
-    downloadImage(link,'download')
+    downloadImage(l,'download')
 })
