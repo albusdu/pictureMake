@@ -27,6 +27,7 @@
   "dependencies": {
     "axios": "^0.26.1",
     "croppie": "^2.6.5",
+    "file-loader": "^6.2.0",
     "merge-images": "^2.0.0"
   }
 }
