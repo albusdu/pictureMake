@@ -117,6 +117,10 @@ body {
     cursor: pointer;
     width: 50px;
     height: 50px;
+    transition: .3s ease-in-out;
+    &:hover{
+      transform: scale(1.1);
+    }
   }
 }
 #vanilla-demo {
