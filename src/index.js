@@ -36,7 +36,6 @@ document.querySelectorAll('.frame').forEach((item,index)=> {
         mergeImages([{ src: link, x: 20, y: 20 }, activeFrame], options)
             .then(b64 => {
                 l = b64; 
-                document.querySelector('.preview').src = l;
             });
     })
 })
@@ -72,7 +71,6 @@ function croppieF(lk){
                 mergeImages([{ src: link, x: 20, y: 20 }, activeFrame], options)
                     .then(b64 => {
                         l = b64; 
-                        document.querySelector('.preview').src = l;
                     });
                 
             })
