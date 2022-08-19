@@ -21,18 +21,24 @@ let el = document.getElementById('vanilla-demo');
 let vanilla = null;
 let timer;
 
+let disabledFrames = true;
+
 let img = document.createElement('img');
 img.style.cssText = 'position: absolute; top: -5px; left: -5px; width: 260px; height: 260px; z-index: 1;pointer-events: none;'
 document.querySelectorAll('.frame').forEach((item,index)=> {
     item.src = frames[index]
+    
     item.addEventListener('click', ()=> {
+        if(disabledFrames){
+            return;
+        }
         activeFrame = frames[index];
         let options = {width: 800, height: 800};
         l = '';
-
+        
         img.src = frames[index]
         document.querySelector('.cr-boundary').append(img)
-
+        
         mergeImages([{ src: link, x: 20, y: 20 }, activeFrame], options)
             .then(b64 => {
                 l = b64; 
@@ -50,6 +56,7 @@ document.querySelector('input[type="file"]').addEventListener('change', function
             boundary: { width: 250, height: 250 },
             showZoomer: true,
         });
+        disabledFrames = false;
         croppieF(link);
     }
 });
