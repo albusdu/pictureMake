@@ -12,6 +12,13 @@ import {
     frame7, 
     frame8
 } from './assets/frames';
+import add from './assets/add-image.png'
+import remove from './assets/remove.png'
+
+let addBtn = document.getElementById('add')
+addBtn.src = add;
+let removeBtn = document.getElementById('remove')
+removeBtn.src = remove;
 
 const frames = [frame1,frame2,frame3,frame4,frame5,frame6,frame7,frame8]
 let activeFrame = frames[0];
@@ -24,7 +31,7 @@ let timer;
 let disabledFrames = true;
 
 let img = document.createElement('img');
-img.style.cssText = 'position: absolute; top: -5px; left: -5px; width: 260px; height: 260px; z-index: 1;pointer-events: none;'
+img.style.cssText = 'position: absolute; top: -5px; left: -5px; width: 405px; height: 405px; z-index: 1;pointer-events: none;'
 document.querySelectorAll('.frame').forEach((item,index)=> {
     item.src = frames[index]
     
@@ -45,21 +52,28 @@ document.querySelectorAll('.frame').forEach((item,index)=> {
             });
     })
 })
-document.querySelector('input[type="file"]').addEventListener('change', function() {
+let input = document.querySelector('input[type="file"]');
+input.addEventListener('change', function() {
     if (this.files && this.files[0]) {
         link =  URL.createObjectURL(this.files[0]);
-        if(vanilla){
-            vanilla.destroy()
-        }
         vanilla = new Croppie(el, {
-            viewport: { width: 250, height: 250, type: 'circle' },
-            boundary: { width: 250, height: 250 },
+            viewport: { width: 395, height: 395, type: 'circle' },
+            boundary: { width: 395, height: 395 },
             showZoomer: true,
         });
         disabledFrames = false;
+        el.classList.add('active')
+        addBtn.style.display = 'none';
         croppieF(link);
     }
 });
+removeBtn.addEventListener('click', ()=> {
+    input.value = '';
+    vanilla.destroy();
+    addBtn.style.display = 'block';
+    el.classList.remove('active');
+    disabledFrames = true;
+})
 function croppieF(lk){
     img.src = activeFrame;
     document.querySelector('.cr-boundary').append(img)
@@ -86,5 +100,5 @@ function croppieF(lk){
 }
 
 document.querySelector('#btn').addEventListener('click', ()=> {
-    downloadImage(l,'download')
+    downloadImage(l,'Mutual Friends PFP')
 })
