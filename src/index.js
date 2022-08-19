@@ -12,13 +12,16 @@ import {
     frame7, 
     frame8
 } from './assets/frames';
-import add from './assets/add-image.png'
-import remove from './assets/remove.png'
+import add from './assets/add-image.png';
+import remove from './assets/remove.png';
+import save from './assets/button.svg';
 
 let addBtn = document.getElementById('add')
 addBtn.src = add;
 let removeBtn = document.getElementById('remove')
 removeBtn.src = remove;
+let saveBtn = document.getElementById('save')
+saveBtn.src = save;
 
 const frames = [frame1,frame2,frame3,frame4,frame5,frame6,frame7,frame8]
 let activeFrame = frames[0];
