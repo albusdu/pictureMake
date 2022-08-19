@@ -12,16 +12,6 @@ import {
     frame7, 
     frame8
 } from './assets/frames';
-import add from './assets/add-image.png';
-import remove from './assets/remove.png';
-import save from './assets/button.svg';
-
-let addBtn = document.getElementById('add')
-addBtn.src = add;
-let removeBtn = document.getElementById('remove')
-removeBtn.src = remove;
-let saveBtn = document.getElementById('save')
-saveBtn.src = save;
 
 const frames = [frame1,frame2,frame3,frame4,frame5,frame6,frame7,frame8]
 let activeFrame = frames[0];
@@ -36,8 +26,6 @@ let disabledFrames = true;
 let img = document.createElement('img');
 img.style.cssText = 'position: absolute; top: -5px; left: -5px; width: 405px; height: 405px; z-index: 1;pointer-events: none;'
 document.querySelectorAll('.frame').forEach((item,index)=> {
-    item.src = frames[index]
-    
     item.addEventListener('click', ()=> {
         if(disabledFrames){
             return;
