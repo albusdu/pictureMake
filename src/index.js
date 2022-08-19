@@ -47,27 +47,28 @@ document.querySelector('input[type="file"]').addEventListener('change', function
         test(link);
     }
 });
-
+let timer;
 function test(lk){
-    
     vanilla.bind({
         url: lk,
     })
-    document.getElementById('vanilla-demo').addEventListener('update', function(ev) { 
-        console.log(ev.detail);
-        vanilla.result({type: 'blob', size: { width: 760, height: 760 }}).then((blob)=> {
-            const url = window.URL.createObjectURL(blob);
-            link = url;
-
-            let options = {width: 800, height: 800}
-            l = '';
-            mergeImages([{ src: link, x: 20, y: 20 }, activeFrame], options)
-                .then(b64 => {
-                    l = b64; 
-                    document.querySelector('.preview').src = l;
-                });
-            
-        })
+    document.getElementById('vanilla-demo').addEventListener('update', (ev)=> {
+        clearTimeout(timer)
+        timer = setTimeout(()=> {
+            vanilla.result({type: 'blob', size: { width: 760, height: 760 }}).then((blob)=> {
+                const url = window.URL.createObjectURL(blob);
+                link = url;
+    
+                let options = {width: 800, height: 800}
+                l = '';
+                mergeImages([{ src: link, x: 20, y: 20 }, activeFrame], options)
+                    .then(b64 => {
+                        l = b64; 
+                        document.querySelector('.preview').src = l;
+                    });
+                
+            })
+        }, 400)
     });
 }
 document.querySelector('#btn').addEventListener('click', ()=> {
