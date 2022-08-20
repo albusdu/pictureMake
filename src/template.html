@@ -5,8 +5,68 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <style>
+      .loader{
+        z-index: 9;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(
+          to right top,
+          #02172a,
+          #022039,
+          #012948,
+          #013258,
+          #013b68,
+          #014072,
+          #03457b,
+          #064a85,
+          #064c89,
+          #064f8e,
+          #075192,
+          #075497
+        );
+      }
+    .loader-logo{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+    .loader-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+    rect{
+      fill: rgba(6, 23, 38, 0.4);
+      stroke: #ffd500;
+      stroke-width: 7px;
+      stroke-dasharray: 100px;
+      animation: slide 1.2s infinite linear;
+    }
+    @keyframes slide{
+      0%{
+        stroke-dashoffset: 200px
+      };
+      100%{
+        stroke-dashoffset: 0px
+      };
+    }
+    </style>
   </head>
   <body>
+    <div class="loader">
+      <div class="loader-container">
+        <svg height='114' width='114'>
+          <rect x="7" y="7" width="100" height="100" rx="7"/>
+        </svg>
+      </div>
+      <img src="https://i.ibb.co/ScdNNJ4/MF-Loader.png" alt="logo" class="loader-logo" width="40">
+    </div>
     <div class="container">
       <div class="left">
         <div class="upload-container">
