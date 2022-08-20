@@ -1,27 +1,8 @@
-// @font-face {
-// 	font-family: 'averia-regular';
-// 	src: url('./AveriaSansLibre-Regular.eot');
-// 	src: local('â˜º'), url('./AveriaSansLibre-Regular.woff') format('woff'), url('./AveriaSansLibre-Regular.ttf') format('truetype'), url('./AveriaSansLibre-Regular.svg') format('svg');
-// 	font-weight: normal;
-// 	font-style: normal;
-// }
+@import url('https://fonts.googleapis.com/css2?family=Averia+Sans+Libre:wght@400;700&display=swap');
 
-// @font-face {
-// 	font-family: 'averia-bold';
-// 	src: url('./AveriaSansLibre-Bold.eot');
-// 	src: local('â˜º'), url('./AveriaSansLibre-Bold.woff') format('woff'), url('./AveriaSansLibre-Bold.ttf') format('truetype'), url('./AveriaSansLibre-Bold.svg') format('svg');
-// 	font-weight: normal;
-// 	font-style: normal;
-// }
-
-// @font-face {
-// 	font-family: 'mutual-friends';
-// 	src: url('MutualFriends-Regular.eot');
-// 	src: local('☺'), url('MutualFriends-Regular.woff') format('woff'), url('MutualFriends-Regular.ttf') format('truetype'), url('MutualFriends-Regular.svg') format('svg');
-// 	font-weight: normal;
-// 	font-style: normal;
-// }
-
+$averia-font: 'Averia Sans Libre', cursive;
+$regular: 400;
+$bold: 700;
 $primary-color: #2fa8cc;
 $secondary-color: #f4f4f4;
 $box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
@@ -96,12 +77,23 @@ body {
       padding: 50px 0;
       font-size: 30px;
       color: white;
+      font-family: $averia-font;
+      font-weight: $regular;
     }
     .frames{
       flex: 1 0 0;
       overflow: auto;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
+      margin-right: 20px;
+      margin-bottom: 50px;
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: #ffd500;
+        border-radius: 6px;
+      }
       img{
         width: 200px;
         cursor: pointer;
@@ -172,6 +164,8 @@ body {
   span {
     position: absolute;
     font-size: 18px;
+    font-family: $averia-font;
+    font-weight: $regular;
   }
 }
 #vanilla-demo {
