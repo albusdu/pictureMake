@@ -109,3 +109,8 @@ function croppieF(lk){
 document.querySelector('#btn').addEventListener('click', ()=> {
     downloadImage(l,'Mutual Friends PFP')
 })
+
+let loader = document.querySelector('.loader');
+setTimeout(()=> {
+    loader.style.display = 'none'
+}, 1400)
