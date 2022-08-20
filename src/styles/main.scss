@@ -142,8 +142,12 @@ body {
         box-shadow: 7px 6px 22px 0px rgba(0,0,0,0.3);
         -webkit-box-shadow: 7px 6px 22px 0px rgba(0,0,0,0.3);
         -moz-box-shadow: 7px 6px 22px 0px rgba(0,0,0,0.3);
+        transition: .3s ease-in-out;
         &:nth-of-type(even){
           justify-self: left;
+        }
+        &:hover{
+          transform: scale(1.05);
         }
         .bg{
           top: 0;
