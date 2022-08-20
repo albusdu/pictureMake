@@ -6,3 +6,5 @@ export {default as frame5} from "./5.png";
 export {default as frame6} from "./6.png";
 export {default as frame7} from "./7.png";
 export {default as frame8} from "./8.png";
+export {default as frame9} from "./9.png";
+export {default as frame10} from "./10.png";

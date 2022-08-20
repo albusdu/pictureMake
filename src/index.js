@@ -10,7 +10,9 @@ import {
     frame5, 
     frame6, 
     frame7, 
-    frame8
+    frame8,
+    frame9,
+    frame10
 } from './assets/frames';
 import add from './assets/add-image.png';
 import remove from './assets/remove.png';
@@ -23,7 +25,7 @@ removeBtn.src = remove;
 let saveBtn = document.getElementById('save')
 saveBtn.src = save;
 
-const frames = [frame1,frame2,frame3,frame4,frame5,frame6,frame7,frame8]
+const frames = [frame1,frame2,frame3,frame4,frame5,frame6,frame7,frame8,frame9,frame10]
 let activeFrame = frames[0];
 let link = '';
 let l ='';
@@ -58,6 +60,7 @@ document.querySelectorAll('.frame').forEach((item,index)=> {
 let input = document.querySelector('input[type="file"]');
 input.addEventListener('change', function() {
     if (this.files && this.files[0]) {
+        removeBtn.style.display = 'block';
         link =  URL.createObjectURL(this.files[0]);
         vanilla = new Croppie(el, {
             viewport: { width: 395, height: 395, type: 'circle' },
@@ -73,6 +76,7 @@ input.addEventListener('change', function() {
 removeBtn.addEventListener('click', ()=> {
     input.value = '';
     vanilla.destroy();
+    removeBtn.style.display = 'none';
     addBtn.style.display = 'block';
     el.classList.remove('active');
     disabledFrames = true;
