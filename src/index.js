@@ -17,6 +17,11 @@ import {
 import add from './assets/add-image.png';
 import remove from './assets/remove.png';
 import save from './assets/button.svg';
+import logo from './assets/logo.png';
+import twitterIcon from './assets/t-b.png';
+import discordIcon from './assets/d-b.png';
+import zoomInIcon from './assets/zoom-in.png';
+import zoomOutIcon from './assets/zoom-out.png';
 
 let addBtn = document.getElementById('add')
 addBtn.src = add;
@@ -24,6 +29,12 @@ let removeBtn = document.getElementById('remove')
 removeBtn.src = remove;
 let saveBtn = document.getElementById('save')
 saveBtn.src = save;
+let logoImg = document.getElementById('logo')
+logoImg.src = logo;
+let twitter = document.getElementById('twitter')
+twitter.src = twitterIcon;
+let discord = document.getElementById('discord')
+discord.src = discordIcon;
 
 const frames = [frame1,frame2,frame3,frame4,frame5,frame6,frame7,frame8,frame9,frame10]
 let activeFrame = frames[0];
@@ -36,7 +47,11 @@ let timer;
 let disabledFrames = true;
 
 let img = document.createElement('img');
-img.style.cssText = 'position: absolute; top: -5px; left: -5px; width: 405px; height: 405px; z-index: 1;pointer-events: none;'
+img.style.cssText = 'position: absolute; top: -5px; left: -5px; width: 405px; height: 405px; z-index: 1;pointer-events: none;';
+let zoomIn = document.createElement('img')
+zoomIn.style.cssText = 'margin-left: 10px;width: 20px;transform: rotate(90deg)'
+let zoomOut = document.createElement('img')
+zoomOut.style.cssText = 'margin-right: 10px;width: 20px;transform: rotate(90deg)'
 document.querySelectorAll('.frame').forEach((item,index)=> {
     item.src = frames[index]
     
@@ -83,7 +98,11 @@ removeBtn.addEventListener('click', ()=> {
 })
 function croppieF(lk){
     img.src = activeFrame;
+    zoomIn.src = zoomInIcon
+    zoomOut.src = zoomOutIcon
     document.querySelector('.cr-boundary').append(img)
+    document.querySelector('.cr-slider-wrap').prepend(zoomOut)
+    document.querySelector('.cr-slider-wrap').append(zoomIn)
     vanilla.bind({
         url: lk,
     })
