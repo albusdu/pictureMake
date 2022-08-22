@@ -47,7 +47,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'MF - Profile Picture Maker',
+      title: 'MF - Profile Photo Maker',
       filename: 'index.html',
       template: 'src/template.html',
     }),

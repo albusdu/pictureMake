@@ -97,8 +97,8 @@ document.querySelectorAll('.frame').forEach((item,index)=> {
 let input = document.querySelector('input[type="file"]');
 input.addEventListener('change', function() {
     if (this.files && this.files[0]) {
-        console.log(this.files)
         colorLayerContainer.style.display = 'flex';
+        document.querySelector('#saveBtn').style.display = 'flex';
         removeBtn.style.display = 'block';
         croppieImg =  URL.createObjectURL(this.files[0]);
         vanilla = new Croppie(el, {
@@ -117,6 +117,7 @@ removeBtn.addEventListener('click', ()=> {
     input.value = '';
     vanilla.destroy();
     removeBtn.style.display = 'none';
+    document.querySelector('#saveBtn').style.display = 'none';
     addBtn.style.display = 'block';
     el.classList.remove('active');
     img.style.display = 'none';

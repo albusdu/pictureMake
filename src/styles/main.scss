@@ -219,12 +219,13 @@ body {
   border: 0;
   background: none;
   color: white;
-  display: flex;
   align-items: center;
   justify-content: center;
   width: 175px;
   transition: .3s ease-in-out;
   cursor: pointer;
+  margin-top: 40px;
+  display: none;
   &:hover{
     filter: brightness(1.1);
   }
