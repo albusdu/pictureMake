@@ -47,15 +47,22 @@ body {
   .socials{
     display: flex;
     align-items: center;
-    .link{
+    .link {
       display: flex;
       margin-right: 15px;
+      transition: .3s ease-in-out;
+      &:hover{
+        transform: scale(1.05);
+      }
       img{
         width: 50px;
       }
-    }
-    #discord{
-      filter: grayscale(1);
+      &.discord {
+        pointer-events: none;
+        img {
+          filter: grayscale(1);
+        }
+      }
     }
   }
 }
