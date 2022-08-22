@@ -1,5 +1,6 @@
 import mergeImages from 'merge-images';
 import Croppie from 'croppie';
+import addFav from './addFav';
 import generateStars from './stars';
 import downloadImage from './downloadImage';
 import './styles/main.scss';
@@ -45,7 +46,7 @@ delLayer.src = deleteIcon;
 const frames = [frame1,frame2,frame3,frame4,frame5,frame6,frame7,frame8,frame9,frame10]
 let el = document.getElementById('vanilla');
 let activeFrame = frames[0];
-let link = '';
+let croppieImg = '';
 let completeImg ='';
 let vanilla = null;
 let timer;
@@ -72,8 +73,14 @@ zoomIn.style.cssText = 'margin-left: 10px;width: 20px;transform: rotate(90deg)';
 //zoomOut
 let zoomOut = document.createElement('img');
 zoomOut.style.cssText = 'margin-right: 10px;width: 20px;transform: rotate(90deg)';
+//color Layer above picture
+let bgLayer = document.createElement('div');
+bgLayer.style.cssText = 'position: absolute; top: 10px; left: 10px; width: 390px; height: 390px; z-index: 1;pointer-events: none;border-radius: 50%;'
 //run stars
 generateStars();
+//add favicon
+addFav();
+//add urls to frame + on click choose frame
 document.querySelectorAll('.frame').forEach((item,index)=> {
     item.src = frames[index]
     item.addEventListener('click', ()=> {
@@ -86,13 +93,14 @@ document.querySelectorAll('.frame').forEach((item,index)=> {
         el.append(img)
     })
 })
+//upload img
 let input = document.querySelector('input[type="file"]');
 input.addEventListener('change', function() {
     if (this.files && this.files[0]) {
         console.log(this.files)
         colorLayerContainer.style.display = 'flex';
         removeBtn.style.display = 'block';
-        link =  URL.createObjectURL(this.files[0]);
+        croppieImg =  URL.createObjectURL(this.files[0]);
         vanilla = new Croppie(el, {
             viewport: { width: 395, height: 395, type: 'circle' },
             boundary: { width: 395, height: 395 },
@@ -101,9 +109,10 @@ input.addEventListener('change', function() {
         notUpload = false;
         el.classList.add('active')
         addBtn.style.display = 'none';
-        croppieF(link);
+        croppieF(croppieImg);
     }
 });
+//remove img
 removeBtn.addEventListener('click', ()=> {
     input.value = '';
     vanilla.destroy();
@@ -114,10 +123,7 @@ removeBtn.addEventListener('click', ()=> {
     notUpload = true;
     resetColorLayer('hide');
 })
-
-let bgLayer = document.createElement('div');
-bgLayer.style.cssText = 'position: absolute; top: 10px; left: 10px; width: 390px; height: 390px; z-index: 1;pointer-events: none;border-radius: 50%;'
-
+//create croppie img
 function croppieF(uploadedImg){
     img.src = activeFrame;
     zoomIn.src = zoomInIcon;
@@ -130,50 +136,54 @@ function croppieF(uploadedImg){
     vanilla.bind({
         url: uploadedImg,
     })
-    el.addEventListener('update', (ev)=> {
+    el.addEventListener('update', ()=> {
         clearTimeout(timer)
         timer = setTimeout(()=> {
             vanilla.result({type: 'blob', size: { width: 760, height: 760 }}).then((blob)=> {
                 const url = window.URL.createObjectURL(blob);
-                link = url;
+                croppieImg = url;
             })
         }, 400)
     });
 }
-
-document.querySelector('#btn').addEventListener('click', ()=> {
+//saveImage
+document.querySelector('#saveBtn').addEventListener('click', ()=> {
     if(notUpload){
         return;
     }
     let options = {width: 800, height: 800}
     if(colorLayer){
-        mergeImages([{ src: link, x: 20, y: 20 }, {src: colorLayer, x: 20, y: 20 }, activeFrame], options)
+        mergeImages([{ src: croppieImg, x: 20, y: 20 }, {src: colorLayer, x: 20, y: 20 }, activeFrame], options)
         .then(b64 => {
             completeImg = b64; 
             downloadImage(completeImg, 'Mutual Friends PFP')
         });
         return;
     }
-    mergeImages([{ src: link, x: 20, y: 20 }, activeFrame], options)
+    mergeImages([{ src: croppieImg, x: 20, y: 20 }, activeFrame], options)
         .then(b64 => {
             completeImg = b64; 
             downloadImage(completeImg, 'Mutual Friends PFP')
         });
 })
+//clear colorLayer
 delLayer.addEventListener('click', ()=> {
     resetColorLayer('');
 })
+//choose opacity
 opacityRange.addEventListener('input', ()=> {
     opacity = opacityRange.value
     createColorLayer(hex2rgba(bgColor, opacity));
     bgLayer.style.backgroundColor = hex2rgba(bgColor, opacity);
 })
+//choose color
 color_picker.addEventListener('input', ()=> {
     color_picker_wrapper.style.backgroundColor = color_picker.value;
     bgColor = color_picker.value;
     createColorLayer(hex2rgba(bgColor, opacity));
     bgLayer.style.backgroundColor = hex2rgba(bgColor, opacity);
 });
+//create image with color layer
 let canvas = document.getElementById('canvasid');
 let context = canvas.getContext('2d');
 function createColorLayer(color){
@@ -183,6 +193,7 @@ function createColorLayer(color){
     context.fill();
     colorLayer = canvas.toDataURL("img/png");
 }
+//reset color pick
 function resetColorLayer(directive){
     if(directive == 'hide'){
         colorLayerContainer.style.display = 'none';
@@ -195,12 +206,11 @@ function resetColorLayer(directive){
     opacityRange.value = opacity;
     color_picker_wrapper.style.backgroundColor = color_picker.value;
 }
+//hex to rgba
 const hex2rgba = (hex, alpha = 0.5) => {
     const [r, g, b] = hex.match(/\w\w/g).map(x => parseInt(x, 16));
     return `rgba(${r},${g},${b},${alpha})`;
 };
-
-
 //loader
 let loader = document.querySelector('.loader');
 let starsWrapper = document.getElementById('stars')
