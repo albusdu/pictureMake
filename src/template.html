@@ -88,10 +88,10 @@
               <label for="upload"><img id="add" alt="upload image"></label>
               <input type="file" id="upload">
             </div>
-            <div id="vanilla-demo"></div>
+            <div id="vanilla"></div>
             <div class="color-layer">
               <img id="delete" alt="remove color">
-              <input class="cr-slider opacity-input" type="range" id="vol" step='0.05' name="vol" min="0" max="1">
+              <input class="cr-slider opacity-input" type="range" id="opacityRange" step='0.05' min="0" max="1">
               <div id="color-picker-wrapper">
                 <input type="color" value="#ff0000" id="color-picker">
               </div>
@@ -148,7 +148,6 @@
         </div>
       </div>
     </div>
-    <canvas id="canvasid" width="760" height="760"></canvas>
-    <img id="canvasImg" alt="">
+    <canvas style="display: none;" id="canvasid" width="760" height="760"></canvas>
   </body>
 </html>
