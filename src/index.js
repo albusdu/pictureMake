@@ -164,7 +164,7 @@ opacityRange.addEventListener('input', ()=> {
     createColorLayer(hex2rgba(bgColor, opacity));
     bgLayer.style.backgroundColor = hex2rgba(bgColor, opacity);
 })
-color_picker.addEventListener('input', (e)=> {
+color_picker.addEventListener('input', ()=> {
     color_picker_wrapper.style.backgroundColor = color_picker.value;
     bgColor = color_picker.value;
     createColorLayer(hex2rgba(bgColor, opacity));

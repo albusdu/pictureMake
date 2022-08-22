@@ -64,6 +64,7 @@ body {
   }
 }
 .wrap{
+  padding-bottom: 40px;
   display: flex;
   flex-direction: column;
   .main-title{
@@ -260,14 +261,16 @@ body {
   align-items: center;
   transform: rotate(-90deg);
   transform-origin: right;
-  top: 1.5px;
+  top: 22px;
   position: absolute;
   right: -70px;
   .opacity-input{
-    margin-right: 15px;
+    margin-right: 12px;
   }
   #delete{
-    margin-right: 5px;
+    width: 20px;
+    height: 20px;
+    margin-right: 9px;
     cursor: pointer;
   }
 }
@@ -283,6 +286,8 @@ input[type="color"] {
 }
 #color-picker-wrapper {
 	float: left;
-  border-radius: 8px;
+  border-radius: 4px;
   cursor: pointer;
+  width: 20px;
+  height: 20px;
 }
