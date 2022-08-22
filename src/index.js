@@ -1,5 +1,6 @@
 import mergeImages from 'merge-images';
 import Croppie from 'croppie';
+import generateStars from './stars';
 import downloadImage from './downloadImage';
 import './styles/main.scss';
 import { 
@@ -71,6 +72,8 @@ zoomIn.style.cssText = 'margin-left: 10px;width: 20px;transform: rotate(90deg)';
 //zoomOut
 let zoomOut = document.createElement('img');
 zoomOut.style.cssText = 'margin-right: 10px;width: 20px;transform: rotate(90deg)';
+//run stars
+generateStars();
 document.querySelectorAll('.frame').forEach((item,index)=> {
     item.src = frames[index]
     item.addEventListener('click', ()=> {
@@ -199,6 +202,8 @@ const hex2rgba = (hex, alpha = 0.5) => {
 
 //loader
 let loader = document.querySelector('.loader');
+let starsWrapper = document.getElementById('stars')
 setTimeout(()=> {
     loader.style.display = 'none';
+    starsWrapper.style.cssText = 'z-index: -1';
 }, 1400)
