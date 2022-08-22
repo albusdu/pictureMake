@@ -47,7 +47,7 @@ let timer;
 let disabledFrames = true;
 
 let img = document.createElement('img');
-img.style.cssText = 'position: absolute; top: -5px; left: -5px; width: 405px; height: 405px; z-index: 1;pointer-events: none;';
+img.style.cssText = 'position: absolute; top: -5px; left: -5px; width: 410px; height: 410px; z-index: 1;pointer-events: none;';
 let zoomIn = document.createElement('img')
 zoomIn.style.cssText = 'margin-left: 10px;width: 20px;transform: rotate(90deg)'
 let zoomOut = document.createElement('img')
@@ -64,7 +64,7 @@ document.querySelectorAll('.frame').forEach((item,index)=> {
         l = '';
         
         img.src = frames[index]
-        document.querySelector('.cr-boundary').append(img)
+        el.append(img)
         
         mergeImages([{ src: link, x: 20, y: 20 }, activeFrame], options)
             .then(b64 => {
@@ -100,7 +100,7 @@ function croppieF(lk){
     img.src = activeFrame;
     zoomIn.src = zoomInIcon
     zoomOut.src = zoomOutIcon
-    document.querySelector('.cr-boundary').append(img)
+    el.append(img)
     document.querySelector('.cr-slider-wrap').prepend(zoomOut)
     document.querySelector('.cr-slider-wrap').append(zoomIn)
     vanilla.bind({
