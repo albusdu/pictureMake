@@ -4,16 +4,12 @@
 $averia-font: 'Averia Sans Libre', cursive;
 $regular: 400;
 $bold: 700;
-$primary-color: #2fa8cc;
-$secondary-color: #f4f4f4;
-$box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 6px 6px rgba(0, 0, 0, 0.1);
 
 * {
   box-sizing: border-box;
 }
 
 body {
-  // background-color: $primary-color;
   font-family: 'averia-bold';
   display: flex;
   flex-direction: column;
@@ -81,16 +77,13 @@ body {
   }
 }
 .container {
-  background-color: $secondary-color;
-  border-radius: 10px;
-  box-shadow: $box-shadow;
   text-align: center;
   max-width: 100%;
   width: 1400px;
   height: 670px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  background: rgba(6, 23, 38,.4);
+  background: rgba(6, 23, 38,.45);
   border-top-left-radius: 81px;
   border-bottom-right-radius: 81px;
   border-top-right-radius: 39px;
@@ -276,20 +269,30 @@ body {
 }
 
 .blur{
-  width: 490px;
+  width: 226px;
   height: 20px;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  background-image: linear-gradient(to top, rgba(0,0,0, 0), #083660 100%);
   z-index: 3;
-  &.top{
+  &.top-left{
+    background-image: linear-gradient(to top, rgba(0,0,0, 0), #06335b 100%);
+    left: calc(50% - 135px);
     top: 117px;
-    border-radius: 0 0 10px 10px;
   }
-  &.bottom{
-    background-image: linear-gradient(to bottom, rgba(0,0,0, 0), #052c4f 100%);
-    border-radius: 10px 10px 0 0;
+  &.top-right{
+    background-image: linear-gradient(to top, rgba(0,0,0, 0), #09335c 100%);
+    left: calc(50% + 112px);
+    top: 117px;
+  }
+  &.bottom-left{
+    left: calc(50% - 135px);
+    background-image: linear-gradient(to bottom, rgba(0,0,0, 0), #052b4c 100%);
+    bottom: 40px;
+  }
+  &.bottom-right{
+    left: calc(50% + 112px);
+    background-image: linear-gradient(to bottom, rgba(0,0,0, 0), #042d50 100%);
     bottom: 40px;
   }
 }

@@ -89,6 +89,7 @@ document.querySelectorAll('.frame').forEach((item,index)=> {
 let input = document.querySelector('input[type="file"]');
 input.addEventListener('change', function() {
     if (this.files && this.files[0]) {
+        console.log(this.files)
         colorLayerContainer.style.display = 'flex';
         removeBtn.style.display = 'block';
         link =  URL.createObjectURL(this.files[0]);

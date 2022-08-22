@@ -28,7 +28,6 @@ function changePos() {
 
         let style = window.getComputedStyle(star);
         var matrix = new WebKitCSSMatrix(style.transform);
-        console.log(matrix)
         let translateX = matrix.m41;
         let translateY = matrix.m42;
         let vw = 100 * translateX / window.innerWidth;
