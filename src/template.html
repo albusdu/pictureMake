@@ -89,6 +89,13 @@
               <input type="file" id="upload">
             </div>
             <div id="vanilla-demo"></div>
+            <div class="color-layer">
+              <img id="delete" alt="remove color">
+              <input class="cr-slider opacity-input" type="range" id="vol" step='0.05' name="vol" min="0" max="1">
+              <div id="color-picker-wrapper">
+                <input type="color" value="#ff0000" id="color-picker">
+              </div>
+            </div>
           </div>
           <button class="save" id="btn" style="margin-top: 50px;"><img id="save" alt="save image"><span>Save image</span></button>
         </div>
@@ -141,5 +148,7 @@
         </div>
       </div>
     </div>
+    <canvas id="canvasid" width="760" height="760"></canvas>
+    <img id="canvasImg" alt="">
   </body>
 </html>
