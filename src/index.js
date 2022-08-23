@@ -106,8 +106,8 @@ input.addEventListener('change', function() {
         removeBtn.style.display = 'block';
         croppieImg =  URL.createObjectURL(this.files[0]);
         vanilla = new Croppie(el, {
-            viewport: { width: down768px ? 210 : down992px() ? 260 : down1450px() ? 310 : 350, height: down768px ? 210 : down992px() ? 260 : down1450px() ? 310 : 350, type: 'circle' },
-            boundary: { width: down768px ? 210 : down992px() ? 260 : down1450px() ? 310 : 350, height: down768px ? 210 : down992px() ? 260 : down1450px() ? 310 : 350, },
+            viewport: { width: down768px() ? 210 : down992px() ? 260 : down1450px() ? 310 : 350, height: down768px() ? 210 : down992px() ? 260 : down1450px() ? 310 : 350, type: 'circle' },
+            boundary: { width: down768px() ? 210 : down992px() ? 260 : down1450px() ? 310 : 350, height: down768px() ? 210 : down992px() ? 260 : down1450px() ? 310 : 350, },
             showZoomer: true,
         });
         notUpload = false;
@@ -126,7 +126,6 @@ function down992px() {
 function down768px() {
     return window.innerWidth <= 768;
 }
-console.log(down768px())
 //remove img
 removeBtn.addEventListener('click', ()=> {
     input.value = '';
