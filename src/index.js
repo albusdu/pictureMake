@@ -66,16 +66,20 @@ let colorLayer = null;
 let notUpload = true;
 //uploaded img in vanilla
 let img = document.createElement('img');
-img.style.cssText = 'position: absolute; top: -5px; left: -5px; width: 410px; height: 410px; z-index: 2;pointer-events: none;';
+img.className = 'vanilla-img';
+// img.style.cssText = 'position: absolute; top: -5px; left: -5px; width: 410px; height: 410px; z-index: 2;pointer-events: none;';
 //zoomIn
 let zoomIn = document.createElement('img');
-zoomIn.style.cssText = 'margin-left: 10px;width: 20px;transform: rotate(90deg)';
+zoomIn.className = 'zoom-in';
+// zoomIn.style.cssText = 'margin-left: 10px;width: 20px;transform: rotate(90deg)';
 //zoomOut
 let zoomOut = document.createElement('img');
-zoomOut.style.cssText = 'margin-right: 10px;width: 20px;transform: rotate(90deg)';
+zoomOut.className = 'zoom-out'
+// zoomOut.style.cssText = 'margin-right: 10px;width: 20px;transform: rotate(90deg)';
 //color Layer above picture
 let bgLayer = document.createElement('div');
-bgLayer.style.cssText = 'position: absolute; top: 10px; left: 10px; width: 390px; height: 390px; z-index: 1;pointer-events: none;border-radius: 50%;'
+bgLayer.className = 'bg-layer'
+// bgLayer.style.cssText = 'position: absolute; top: 10px; left: 10px; width: 390px; height: 390px; z-index: 1;pointer-events: none;border-radius: 50%;'
 //run stars
 generateStars();
 //add favicon
@@ -102,8 +106,8 @@ input.addEventListener('change', function() {
         removeBtn.style.display = 'block';
         croppieImg =  URL.createObjectURL(this.files[0]);
         vanilla = new Croppie(el, {
-            viewport: { width: 395, height: 395, type: 'circle' },
-            boundary: { width: 395, height: 395 },
+            viewport: { width: down768px ? 210 : down992px() ? 260 : down1450px() ? 310 : 350, height: down768px ? 210 : down992px() ? 260 : down1450px() ? 310 : 350, type: 'circle' },
+            boundary: { width: down768px ? 210 : down992px() ? 260 : down1450px() ? 310 : 350, height: down768px ? 210 : down992px() ? 260 : down1450px() ? 310 : 350, },
             showZoomer: true,
         });
         notUpload = false;
@@ -112,6 +116,17 @@ input.addEventListener('change', function() {
         croppieF(croppieImg);
     }
 });
+//breakpoints func
+function down1450px() {
+    return window.innerWidth <= 1450;
+}
+function down992px() {
+    return window.innerWidth <= 992;
+}
+function down768px() {
+    return window.innerWidth <= 768;
+}
+console.log(down768px())
 //remove img
 removeBtn.addEventListener('click', ()=> {
     input.value = '';

@@ -107,7 +107,19 @@
     position: absolute;
     left: -70px;
     transform-origin: left;
-    bottom: 3px
+    bottom: 3px;
+    @media (max-width: 1450px){
+      bottom: -17px;
+      left: -50px;
+    }
+    @media (max-width: 1200px) {
+      left: -40px;
+      bottom: 3px;
+    }
+    @media (max-width: 768px){
+      left: -30px;
+      bottom: -18px;
+    }
   }
   
   .croppie-result {
@@ -144,6 +156,15 @@
     padding-top: 8px;
     padding-bottom: 8px;
     background-color: transparent;
+    @media (max-width: 1450px){
+      width: 270px;
+    }
+    @media (max-width: 992px){
+      width: 200px;
+    }
+    @media (max-width: 768px) {
+      width: 170px;
+    }
   }
   
   .cr-slider::-webkit-slider-runnable-track {
